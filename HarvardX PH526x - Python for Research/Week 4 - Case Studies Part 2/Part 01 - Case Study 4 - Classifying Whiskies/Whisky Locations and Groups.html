@@ -1,0 +1,85 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+      <meta charset="utf-8">
+      <title>Bokeh Plot</title>
+      
+      
+        
+          
+        
+        
+          
+        <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.2.3.min.js" integrity="sha384-T2yuo9Oe71Cz/I4X9Ac5+gpEa5a8PpJCDlqKYO0CfAuEszu1JrXLl8YugMqYe3sM" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+        
+      
+      
+    
+  </head>
+  
+  
+  <body>
+    
+      
+        
+          
+          
+            
+              <div class="bk-root" id="5d5eab28-03e5-420f-b89a-91b6c5268767" data-root-id="3003"></div>
+            
+          
+        
+      
+      
+        <script type="application/json" id="3109">
+          {"3d8a790b-2695-449b-9751-067324b347b4":{"roots":{"references":[{"attributes":{"formatter":{"id":"3034"},"major_label_orientation":1.0471975511965976,"ticker":{"id":"3015"}},"id":"3014","type":"LinearAxis"},{"attributes":{},"id":"3034","type":"BasicTickFormatter"},{"attributes":{},"id":"3006","type":"DataRange1d"},{"attributes":{},"id":"3012","type":"LinearScale"},{"attributes":{"above":[{"id":"3014"}],"center":[{"id":"3017"},{"id":"3021"}],"left":[{"id":"3018"}],"plot_height":500,"plot_width":400,"renderers":[{"id":"3030"}],"title":{"id":"3004"},"toolbar":{"id":"3024"},"x_range":{"id":"3006"},"x_scale":{"id":"3010"},"y_range":{"id":"3008"},"y_scale":{"id":"3012"}},"id":"3003","subtype":"Figure","type":"Plot"},{"attributes":{"data_source":{"id":"3002"},"glyph":{"id":"3028"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"3029"},"selection_glyph":null,"view":{"id":"3031"}},"id":"3030","type":"GlyphRenderer"},{"attributes":{"text":"Whisky Locations and Groups"},"id":"3004","type":"Title"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"field":"colors"},"line_alpha":{"value":0.1},"line_color":{"value":null},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"3029","type":"Circle"},{"attributes":{"axis":{"id":"3018"},"dimension":1,"ticker":null},"id":"3021","type":"Grid"},{"attributes":{},"id":"3037","type":"Selection"},{"attributes":{},"id":"3015","type":"BasicTicker"},{"attributes":{"data":{"colors":["#0173b2","#0173b2","#0173b2","#0173b2","#0173b2","#0173b2","#0173b2","#0173b2","#0173b2","#0173b2","#0173b2","#0173b2","#0173b2","#0173b2","#0173b2","#0173b2","#0173b2","#0173b2","#0173b2","#0173b2","#de8f05","#de8f05","#de8f05","#de8f05","#de8f05","#029e73","#029e73","#029e73","#029e73","#029e73","#029e73","#029e73","#029e73","#029e73","#029e73","#029e73","#029e73","#029e73","#029e73","#029e73","#029e73","#029e73","#029e73","#029e73","#d55e00","#d55e00","#d55e00","#d55e00","#d55e00","#d55e00","#d55e00","#d55e00","#d55e00","#d55e00","#d55e00","#d55e00","#d55e00","#d55e00","#d55e00","#d55e00","#d55e00","#cc78bc","#cc78bc","#cc78bc","#cc78bc","#cc78bc","#cc78bc","#ca9161","#ca9161","#ca9161","#ca9161","#ca9161","#ca9161","#ca9161","#ca9161","#ca9161","#ca9161","#ca9161","#ca9161","#ca9161","#ca9161","#ca9161","#ca9161","#ca9161","#ca9161","#ca9161"],"distilleries":["Tullibardine","GlenElgin","GlenDeveronMacduff","GlenSpey","Glenfiddich","Glenkinchie","Glenlivet","Inchgower","Bowmore","GlenGarioch","Bladnoch","Linkwood","Benriach","GlenOrd","Speyburn","Belvenie","Tomintoul","RoyalBrackla","Teaninich","ArranIsleOf","GlenScotia","Isle of Jura","Bruichladdich","OldPulteney","Oban","Glenturret","Glenrothes","Mortlach","RoyalLochnagar","Springbank","Glenfarclas","Glendullan","Tormore","Tomatin","Highland Park","Macallan","Glendronach","Auchroisk","Aberlour","Balmenach","Deanston","GlenKeith","Dalmore","Dailuaine","Balblair","Strathmill","Loch Lomond","Tamnavulin","Bunnahabhain","Auchentoshan","Cardhu","GlenMoray","Glenmorangie","AnCnoc","Dufftown","Glenallachie","Tobermory","Dalwhinnie","Craigganmore","Craigallechie","Glenlossie","Laphroig","Clynelish","Talisker","Ardbeg","Lagavulin","Caol Ila","Tamdhu","Strathisla","Ardmore","Speyside","Longmorn","Aultmore","OldFettercairn","BenNevis","Miltonduff","Mannochmore","Benrinnes","Benromach","Knochando","BlairAthol","Glengoyne","Edradour","GlenGrant","Scapa","Aberfeldy"],"regions":["Highlands","Speyside","Speyside","Speyside","Speyside","Lowlands","Speyside","Speyside","Islay","Highlands","Lowlands","Speyside","Speyside","Highlands","Speyside","Speyside","Speyside","Speyside","Highlands","Islands","Campbelltown","Islands","Islay","Highlands","Highlands","Highlands","Speyside","Speyside","Highlands","Campbelltown","Speyside","Speyside","Speyside","Highlands","Islands","Speyside","Highlands","Speyside","Speyside","Speyside","Highlands","Speyside","Highlands","Speyside","Highlands","Speyside","Highlands","Speyside","Islay","Lowlands","Speyside","Speyside","Highlands","Highlands","Speyside","Speyside","Islands","Highlands","Speyside","Speyside","Speyside","Islay","Highlands","Islands","Islay","Islay","Islay","Speyside","Speyside","Highlands","Speyside","Speyside","Speyside","Highlands","Highlands","Speyside","Speyside","Speyside","Speyside","Speyside","Highlands","Highlands","Highlands","Speyside","Islands","Highlands"],"x":[289690,322640,372120,327760,332680,344380,319560,342610,131330,381020,242260,322640,323450,251810,326930,332680,315100,286040,265360,194050,172090,152660,126680,336730,185940,285630,327650,332950,326140,172280,320950,333000,315180,279120,345340,327710,361200,340754,326340,307750,271570,340754,266610,323520,270820,342650,239370,321180,142210,247670,318790,319820,276750,352960,332360,326490,150450,263670,316600,328920,322640,138680,290250,137950,141560,140430,142920,319210,340754,355350,278740,322640,340754,370860,212600,322640,322640,325800,303330,319470,294860,252810,295960,327610,342850,286580],"y":[708850,861040,860400,849140,840840,666690,828780,863970,659720,827590,554260,861040,858380,850860,851430,840840,825560,851320,869120,649950,621010,667040,661400,950130,730190,723580,849170,839850,794370,620910,838160,840300,834960,829630,1009260,844480,844930,848623,842570,827170,701570,848623,868730,841010,885770,850500,680920,826110,673170,672610,843090,862320,883450,839320,839200,841240,755070,785270,836370,844920,861040,645160,904230,831770,646220,645730,670040,841760,848623,829140,800600,861040,848623,772900,775710,861040,861040,839920,859350,841570,757580,682750,757940,849570,1008930,749680]},"selected":{"id":"3037"},"selection_policy":{"id":"3038"}},"id":"3002","type":"ColumnDataSource"},{"attributes":{},"id":"3038","type":"UnionRenderers"},{"attributes":{},"id":"3023","type":"SaveTool"},{"attributes":{"callback":null,"tooltips":[["Distillery","@distilleries"],["Location","(@x, @y)"]]},"id":"3022","type":"HoverTool"},{"attributes":{"formatter":{"id":"3036"},"ticker":{"id":"3019"}},"id":"3018","type":"LinearAxis"},{"attributes":{},"id":"3010","type":"LinearScale"},{"attributes":{},"id":"3019","type":"BasicTicker"},{"attributes":{"axis":{"id":"3014"},"ticker":null},"id":"3017","type":"Grid"},{"attributes":{"fill_color":{"field":"colors"},"line_color":{"value":null},"size":{"units":"screen","value":9},"x":{"field":"x"},"y":{"field":"y"}},"id":"3028","type":"Circle"},{"attributes":{},"id":"3036","type":"BasicTickFormatter"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"3022"},{"id":"3023"}]},"id":"3024","type":"Toolbar"},{"attributes":{},"id":"3008","type":"DataRange1d"},{"attributes":{"source":{"id":"3002"}},"id":"3031","type":"CDSView"}],"root_ids":["3003"]},"title":"Bokeh Application","version":"2.2.3"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('3109').textContent;
+                  var render_items = [{"docid":"3d8a790b-2695-449b-9751-067324b347b4","root_ids":["3003"],"roots":{"3003":"5d5eab28-03e5-420f-b89a-91b6c5268767"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        clearInterval(timer);
+                        embed_document(root);
+                      } else {
+                        attempts++;
+                        if (attempts > 100) {
+                          clearInterval(timer);
+                          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        }
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    
+  </body>
+  
+</html>

@@ -1,0 +1,522 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Assessment: Summarizing with dplyr},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Assessment: Summarizing with dplyr}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\hypertarget{practice-exercise.-national-center-for-health-statistics}{%
+\subsection{Practice Exercise. National Center for Health
+Statistics}\label{practice-exercise.-national-center-for-health-statistics}}
+
+To practice our dplyr skills we will be working with data from the
+survey collected by the United States National Center for Health
+Statistics (NCHS). This center has conducted a series of health and
+nutrition surveys since the 1960's.
+
+Starting in 1999, about 5,000 individuals of all ages have been
+interviewed every year and then they complete the health examination
+component of the survey. Part of this dataset is made available via the
+NHANES package which can be loaded this way:
+
+library(NHANES) data(NHANES) The NHANES data has many missing values.
+Remember that the main summarization function in R will return NA if any
+of the entries of the input vector is an NA. Here is an example:
+
+library(dslabs) data(na\_example) mean(na\_example) sd(na\_example) To
+ignore the NAs, we can use the na.rm argument:
+
+mean(na\_example, na.rm = TRUE) sd(na\_example, na.rm = TRUE) Try
+running this code, then let us know you are ready to proceed with the
+analysis.
+
+\hypertarget{exercise-1.-blood-pressure-1}{%
+\subsection{Exercise 1. Blood pressure
+1}\label{exercise-1.-blood-pressure-1}}
+
+Let's explore the NHANES data. We will be exploring blood pressure in
+this dataset.
+
+First let's select a group to set the standard. We will use 20-29 year
+old females. Note that the category is coded with 20-29, with a space in
+front of the 20! The AgeDecade is a categorical variable with these
+ages.
+
+To know if someone is female, you can look at the Gender variable.
+
+Instructions 100 XP Filter the NHANES dataset so that only 20-29 year
+old females are included and assign this new data frame to the object
+tab. Use the pipe to apply the function filter, with the appropriate
+logicals, to NHANES. Remember that this age group is coded with 20-29,
+which includes a space. You can use head to explore the NHANES table to
+construct the correct call to filter.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(NHANES)}
+\FunctionTok{data}\NormalTok{(NHANES)}
+\FunctionTok{head}\NormalTok{(NHANES)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 76
+##      ID SurveyYr Gender   Age AgeDecade AgeMonths Race1 Race3 Education   
+##   <int> <fct>    <fct>  <int> <fct>         <int> <fct> <fct> <fct>       
+## 1 51624 2009_10  male      34 " 30-39"        409 White <NA>  High School 
+## 2 51624 2009_10  male      34 " 30-39"        409 White <NA>  High School 
+## 3 51624 2009_10  male      34 " 30-39"        409 White <NA>  High School 
+## 4 51625 2009_10  male       4 " 0-9"           49 Other <NA>  <NA>        
+## 5 51630 2009_10  female    49 " 40-49"        596 White <NA>  Some College
+## 6 51638 2009_10  male       9 " 0-9"          115 White <NA>  <NA>        
+## # ... with 67 more variables: MaritalStatus <fct>, HHIncome <fct>,
+## #   HHIncomeMid <int>, Poverty <dbl>, HomeRooms <int>, HomeOwn <fct>,
+## #   Work <fct>, Weight <dbl>, Length <dbl>, HeadCirc <dbl>, Height <dbl>,
+## #   BMI <dbl>, BMICatUnder20yrs <fct>, BMI_WHO <fct>, Pulse <int>,
+## #   BPSysAve <int>, BPDiaAve <int>, BPSys1 <int>, BPDia1 <int>, BPSys2 <int>,
+## #   BPDia2 <int>, BPSys3 <int>, BPDia3 <int>, Testosterone <dbl>,
+## #   DirectChol <dbl>, TotChol <dbl>, UrineVol1 <int>, UrineFlow1 <dbl>,
+## #   UrineVol2 <int>, UrineFlow2 <dbl>, Diabetes <fct>, DiabetesAge <int>,
+## #   HealthGen <fct>, DaysPhysHlthBad <int>, DaysMentHlthBad <int>,
+## #   LittleInterest <fct>, Depressed <fct>, nPregnancies <int>, nBabies <int>,
+## #   Age1stBaby <int>, SleepHrsNight <int>, SleepTrouble <fct>,
+## #   PhysActive <fct>, PhysActiveDays <int>, TVHrsDay <fct>, CompHrsDay <fct>,
+## #   TVHrsDayChild <int>, CompHrsDayChild <int>, Alcohol12PlusYr <fct>,
+## #   AlcoholDay <int>, AlcoholYear <int>, SmokeNow <fct>, Smoke100 <fct>,
+## #   Smoke100n <fct>, SmokeAge <int>, Marijuana <fct>, AgeFirstMarij <int>,
+## #   RegularMarij <fct>, AgeRegMarij <int>, HardDrugs <fct>, SexEver <fct>,
+## #   SexAge <int>, SexNumPartnLife <int>, SexNumPartYear <int>, SameSex <fct>,
+## #   SexOrientation <fct>, PregnantNow <fct>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# fill in what is needed}
+\NormalTok{tab }\OtherTok{\textless{}{-}}\NormalTok{ NHANES }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{ (AgeDecade}\SpecialCharTok{==}\StringTok{" 20{-}29"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{ (Gender}\SpecialCharTok{==}\StringTok{"female"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercise-2.-blood-pressure-2}{%
+\subsection{Exercise 2. Blood pressure
+2}\label{exercise-2.-blood-pressure-2}}
+
+Now we will compute the average and standard deviation for the subgroup
+we defined in the previous exercise (20-29 year old females), which we
+will use reference for what is typical.
+
+You will determine the average and standard deviation of systolic blood
+pressure, which are stored in the BPSysAve variable in the NHANES
+dataset.
+
+Instructions Complete the line of code to save the average and standard
+deviation of systolic blood pressure as average and standard\_deviation
+to a variable called ref. Use the summarize function after filtering for
+20-29 year old females and connect the results using the pipe
+\%\textgreater\%. When doing this remember there are NAs in the data!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(NHANES)}
+\FunctionTok{data}\NormalTok{(NHANES)}
+\DocumentationTok{\#\# complete this line of code.}
+\NormalTok{ref }\OtherTok{\textless{}{-}}\NormalTok{ NHANES }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(AgeDecade }\SpecialCharTok{==} \StringTok{" 20{-}29"} \SpecialCharTok{\&}\NormalTok{ Gender }\SpecialCharTok{==} \StringTok{"female"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}\AttributeTok{average =} \FunctionTok{mean}\NormalTok{(BPSysAve,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{), }\AttributeTok{standard\_deviation =} \FunctionTok{sd}\NormalTok{(BPSysAve,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercise-3.-summarizing-averages}{%
+\subsection{Exercise 3. Summarizing
+averages}\label{exercise-3.-summarizing-averages}}
+
+Now we will repeat the exercise and generate only the average blood
+pressure for 20-29 year old females. For this exercise, you should
+review how to use the place holder . in dplyr or the pull function.
+
+Instructions 100 XP Modify the line of sample code to assign the average
+to a numeric variable called ref\_avg using the . or pull.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(NHANES)}
+\FunctionTok{data}\NormalTok{(NHANES)}
+\DocumentationTok{\#\# modify the code we wrote for previous exercise.}
+\NormalTok{ref\_avg }\OtherTok{\textless{}{-}}\NormalTok{ NHANES }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(AgeDecade }\SpecialCharTok{==} \StringTok{" 20{-}29"} \SpecialCharTok{\&}\NormalTok{ Gender }\SpecialCharTok{==} \StringTok{"female"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{average =} \FunctionTok{mean}\NormalTok{(BPSysAve, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }
+            \AttributeTok{standard\_deviation =} \FunctionTok{sd}\NormalTok{(BPSysAve, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{))}\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{            .}\SpecialCharTok{$}\NormalTok{average}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercise-4.-min-and-max}{%
+\subsection{Exercise 4. Min and max}\label{exercise-4.-min-and-max}}
+
+Let's continue practicing by calculating two other data summaries: the
+minimum and the maximum.
+
+Again we will do it for the BPSysAve variable and the group of 20-29
+year old females.
+
+Instructions 100 XP Report the min and max values for the same group as
+in the previous exercises. Use filter and summarize connected by the
+pipe \%\textgreater\% again. The functions min and max can be used to
+get the values you want. Within summarize, save the min and max of
+systolic blood pressure as minbp and maxbp.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(NHANES)}
+\FunctionTok{data}\NormalTok{(NHANES)}
+\DocumentationTok{\#\# complete the line}
+\NormalTok{NHANES }\SpecialCharTok{\%\textgreater{}\%}
+      \FunctionTok{filter}\NormalTok{(AgeDecade }\SpecialCharTok{==} \StringTok{" 20{-}29"}  \SpecialCharTok{\&}\NormalTok{ Gender }\SpecialCharTok{==} \StringTok{"female"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{minbp =} \FunctionTok{min}\NormalTok{(BPSysAve, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }
+            \AttributeTok{maxbp =} \FunctionTok{max}\NormalTok{(BPSysAve, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 2
+##   minbp maxbp
+##   <int> <int>
+## 1    84   179
+\end{verbatim}
+
+\hypertarget{exercise-5.-group_by}{%
+\subsection{Exercise 5. group\_by}\label{exercise-5.-group_by}}
+
+Now let's practice using the group\_by function.
+
+What we are about to do is a very common operation in data science: you
+will split a data table into groups and then compute summary statistics
+for each group.
+
+We will compute the average and standard deviation of systolic blood
+pressure for females for each age group separately. Remember that the
+age groups are contained in AgeDecade.
+
+Instructions 100 XP Instructions 100 XP Use the functions filter,
+group\_by, summarize, and the pipe \%\textgreater\% to compute the
+average and standard deviation of systolic blood pressure for females
+for each age group separately. Within summarize, save the average and
+standard deviation of systolic blood pressure (BPSysAve) as average and
+standard\_deviation. Note: ignore warnings about implicit NAs. This
+warning will not prevent your code from running or being graded
+correctly.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(NHANES)}
+\FunctionTok{data}\NormalTok{(NHANES)}
+\DocumentationTok{\#\#complete the line with group\_by and summarize}
+\NormalTok{NHANES }\SpecialCharTok{\%\textgreater{}\%}
+      \FunctionTok{filter}\NormalTok{(Gender }\SpecialCharTok{==} \StringTok{"female"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+      \FunctionTok{group\_by}\NormalTok{(AgeDecade) }\SpecialCharTok{\%\textgreater{}\%}
+      \FunctionTok{summarize}\NormalTok{(}\AttributeTok{average =} \FunctionTok{mean}\NormalTok{(BPSysAve, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }
+            \AttributeTok{standard\_deviation =} \FunctionTok{sd}\NormalTok{(BPSysAve, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 9 x 3
+##   AgeDecade average standard_deviation
+##   <fct>       <dbl>              <dbl>
+## 1 " 0-9"       100.               9.07
+## 2 " 10-19"     104.               9.46
+## 3 " 20-29"     108.              10.1 
+## 4 " 30-39"     111.              12.3 
+## 5 " 40-49"     115.              14.5 
+## 6 " 50-59"     122.              16.2 
+## 7 " 60-69"     127.              17.1 
+## 8 " 70+"       134.              19.8 
+## 9  <NA>        142.              22.9
+\end{verbatim}
+
+\hypertarget{exercise-6.-group_by-example-2}{%
+\subsection{Exercise 6. group\_by example
+2}\label{exercise-6.-group_by-example-2}}
+
+Now let's practice using group\_by some more. We are going to repeat the
+previous exercise of calculating the average and standard deviation of
+systolic blood pressure, but for males instead of females.
+
+This time we will not provide much sample code. You are on your own!
+
+Instructions 100 XP Calculate the average and standard deviation of
+systolic blood pressure for males for each age group separately using
+the same methods as in the previous exercise.
+
+Note: ignore warnings about implicit NAs. This warning will not prevent
+your code from running or being graded correctly.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(NHANES)}
+\FunctionTok{data}\NormalTok{(NHANES)}
+\NormalTok{NHANES }\SpecialCharTok{\%\textgreater{}\%}
+      \FunctionTok{filter}\NormalTok{(Gender }\SpecialCharTok{==} \StringTok{"male"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+      \FunctionTok{group\_by}\NormalTok{(AgeDecade) }\SpecialCharTok{\%\textgreater{}\%}
+      \FunctionTok{summarize}\NormalTok{(}\AttributeTok{average =} \FunctionTok{mean}\NormalTok{(BPSysAve, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }
+            \AttributeTok{standard\_deviation =} \FunctionTok{sd}\NormalTok{(BPSysAve, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 9 x 3
+##   AgeDecade average standard_deviation
+##   <fct>       <dbl>              <dbl>
+## 1 " 0-9"       97.4               8.32
+## 2 " 10-19"    110.               11.2 
+## 3 " 20-29"    118.               11.3 
+## 4 " 30-39"    119.               12.3 
+## 5 " 40-49"    121.               14.0 
+## 6 " 50-59"    126.               17.8 
+## 7 " 60-69"    127.               17.5 
+## 8 " 70+"      130.               18.7 
+## 9  <NA>       136.               23.5
+\end{verbatim}
+
+\hypertarget{exercise-7.-group_by-example-3}{%
+\subsection{Exercise 7. group\_by example
+3}\label{exercise-7.-group_by-example-3}}
+
+We can actually combine both of these summaries into a single line of
+code. This is because group\_by permits us to group by more than one
+variable.
+
+We can use group\_by(AgeDecade, Gender) to group by both age decades and
+gender.
+
+Instructions 100 XP Create a single summary table for the average and
+standard deviation of systolic blood pressure using group\_by(AgeDecade,
+Gender). Note that we no longer have to filter! Your code within
+summarize should remain the same as in the previous exercises. Note:
+ignore warnings about implicit NAs. This warning will not prevent your
+code from running or being graded correctly.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(NHANES)}
+\FunctionTok{data}\NormalTok{(NHANES)}
+
+\NormalTok{NHANES }\SpecialCharTok{\%\textgreater{}\%}
+      \FunctionTok{group\_by}\NormalTok{(AgeDecade, Gender) }\SpecialCharTok{\%\textgreater{}\%}
+      \FunctionTok{summarize}\NormalTok{(}\AttributeTok{average =} \FunctionTok{mean}\NormalTok{(BPSysAve, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }
+            \AttributeTok{standard\_deviation =} \FunctionTok{sd}\NormalTok{(BPSysAve, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'AgeDecade'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 18 x 4
+## # Groups:   AgeDecade [9]
+##    AgeDecade Gender average standard_deviation
+##    <fct>     <fct>    <dbl>              <dbl>
+##  1 " 0-9"    female   100.                9.07
+##  2 " 0-9"    male      97.4               8.32
+##  3 " 10-19"  female   104.                9.46
+##  4 " 10-19"  male     110.               11.2 
+##  5 " 20-29"  female   108.               10.1 
+##  6 " 20-29"  male     118.               11.3 
+##  7 " 30-39"  female   111.               12.3 
+##  8 " 30-39"  male     119.               12.3 
+##  9 " 40-49"  female   115.               14.5 
+## 10 " 40-49"  male     121.               14.0 
+## 11 " 50-59"  female   122.               16.2 
+## 12 " 50-59"  male     126.               17.8 
+## 13 " 60-69"  female   127.               17.1 
+## 14 " 60-69"  male     127.               17.5 
+## 15 " 70+"    female   134.               19.8 
+## 16 " 70+"    male     130.               18.7 
+## 17  <NA>     female   142.               22.9 
+## 18  <NA>     male     136.               23.5
+\end{verbatim}
+
+\hypertarget{exercise-8.-arrange}{%
+\subsection{Exercise 8. Arrange}\label{exercise-8.-arrange}}
+
+Now we are going to explore differences in systolic blood pressure
+across races, as reported in the Race1 variable.
+
+We will learn to use the arrange function to order the outcome acording
+to one variable.
+
+Note that this function can be used to order any table by a given
+outcome. Here is an example that arranges by systolic blood pressure.
+
+NHANES \%\textgreater\% arrange(BPSysAve) If we want it in descending
+order we can use the desc function like this:
+
+NHANES \%\textgreater\% arrange(desc(BPSysAve)) In this example, we will
+compare systolic blood pressure across values of the Race1 variable for
+males between the ages of 40-49.
+
+Instructions
+
+Compute the average and standard deviation for each value of Race1 for
+males in the age decade 40-49. Order the resulting table from lowest to
+highest average systolic blood pressure. Use the functions filter,
+group\_by, summarize, arrange, and the pipe \%\textgreater\% to do this
+in one line of code. Within summarize, save the average and standard
+deviation of systolic blood pressure as average and standard\_deviation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(NHANES)}
+\FunctionTok{data}\NormalTok{(NHANES)}
+\NormalTok{NHANES }\SpecialCharTok{\%\textgreater{}\%}
+      \FunctionTok{filter}\NormalTok{(Gender }\SpecialCharTok{==} \StringTok{"male"} \SpecialCharTok{\&}\NormalTok{ AgeDecade}\SpecialCharTok{==}\StringTok{" 40{-}49"}\NormalTok{ ) }\SpecialCharTok{\%\textgreater{}\%}
+      \FunctionTok{group\_by}\NormalTok{(Race1) }\SpecialCharTok{\%\textgreater{}\%}
+      \FunctionTok{summarize}\NormalTok{(}\AttributeTok{average =} \FunctionTok{mean}\NormalTok{(BPSysAve, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }
+            \AttributeTok{standard\_deviation =} \FunctionTok{sd}\NormalTok{(BPSysAve, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+        \FunctionTok{arrange}\NormalTok{(average)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 3
+##   Race1    average standard_deviation
+##   <fct>      <dbl>              <dbl>
+## 1 White       120.               13.4
+## 2 Other       120.               16.2
+## 3 Hispanic    122.               11.1
+## 4 Mexican     122.               13.9
+## 5 Black       126.               17.1
+\end{verbatim}
+
+\end{document}

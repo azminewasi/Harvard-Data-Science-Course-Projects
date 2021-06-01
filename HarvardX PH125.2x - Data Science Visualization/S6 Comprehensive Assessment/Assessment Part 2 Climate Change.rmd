@@ -1,0 +1,286 @@
+---
+title: "Assessment Part 2: Climate Change"
+output: html_notebook
+---
+
+### Background
+The planet's surface temperature is increasing as greenhouse gas emissions increase, and this global warming and carbon cycle disruption is wreaking havoc on natural systems. Living systems that depend on current temperature, weather, currents and carbon balance are jeopardized, and human society will be forced to contend with widespread economic, social, political and environmental damage as the temperature continues to rise. In these exercises, we examine the relationship between global temperature changes, greenhouse gases and human carbon emissions using time series of actual atmospheric and ice core measurements from the National Oceanic and Atmospheric Administration (NOAA) and Carbon Dioxide Information Analysis Center (CDIAC).
+
+
+#### Libraries and Data Import
+
+
+```{r}
+library(tidyverse)
+library(dslabs)
+data(temp_carbon)
+data(greenhouse_gases)
+data(historic_co2)
+```
+
+```{r}
+head(temp_carbon)
+```
+
+### Question 1
+0.0/3.0 points (graded)
+Load the temp_carbon dataset from dslabs, which contains annual global temperature anomalies (difference from 20th century mean temperature in degrees Celsius), temperature anomalies over the land and ocean, and global carbon emissions (in metric tons). Note that the date ranges differ for temperature and carbon emissions.
+
+Which of these code blocks return the latest year for which carbon emissions are reported?
+
+```{r}
+          temp_carbon %>%
+    filter(!is.na(carbon_emissions)) %>%
+    select(year) %>%
+    max()
+        
+```
+
+
+### Question 2
+0.0/3.0 points (graded)
+Inspect the difference in carbon emissions in temp_carbon from the first available year to the last available year.
+
+What is the first year for which carbon emissions (carbon_emissions) data are available?
+
+```{r}
+          temp_carbon %>%
+    filter(!is.na(carbon_emissions)) %>%
+    select(year) %>%
+    min()
+```
+
+
+What is the last year for which carbon emissions data are available?
+ 
+
+```{r}
+          temp_carbon %>%
+    filter(!is.na(carbon_emissions)) %>%
+    select(year) %>%
+    max()
+```
+
+How many times larger were carbon emissions in the last year relative to the first year?
+
+```{r}
+          temp_carbon %>%
+    filter(!is.na(carbon_emissions) & year=="1751") %>%
+    select(year,carbon_emissions) 
+```
+
+```{r}
+          temp_carbon %>%
+    filter(!is.na(carbon_emissions) & year=="2014") %>%
+    select(year,carbon_emissions)
+
+```
+
+
+```{r}
+9855	/3
+```
+
+
+### Question 3
+0.0/3.0 points (graded)
+Inspect the difference in temperature in temp_carbon from the first available year to the last available year.
+
+What is the first year for which global temperature anomaly (temp_anomaly) data are available?
+
+```{r}
+          temp_carbon %>%
+    filter(!is.na(temp_anomaly)) %>%
+    select(year) %>%
+    min()
+```
+What is the last year for which global temperature anomaly data are available?
+
+```{r}
+          temp_carbon %>%
+    filter(!is.na(temp_anomaly)) %>%
+    select(year) %>%
+    max()
+```
+
+How many degrees Celsius has temperature increased over the date range? Compare the temperatures in the most recent year versus the oldest year.
+
+```{r}
+          temp_carbon %>%
+    filter(!is.na(temp_anomaly) & year=="1880") %>%
+    select(year,temp_anomaly) 
+```
+
+
+```{r}
+          temp_carbon %>%
+    filter(!is.na(temp_anomaly) & year=="2018") %>%
+    select(year,temp_anomaly)
+
+```
+
+
+
+```{r}
+0.82 - (-0.11	)
+```
+
+
+### Question 4
+1 point possible (graded)
+Create a time series line plot of the temperature anomaly. Only include years where temperatures are reported. Save this plot to the object p.
+
+Which command adds a blue horizontal line indicating the 20th century mean temperature?
+
+```{r}
+          p <- p + geom_vline(aes(xintercept = 0), col = "blue")
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+
+### 
+
+```{r}
+
+```
+
+

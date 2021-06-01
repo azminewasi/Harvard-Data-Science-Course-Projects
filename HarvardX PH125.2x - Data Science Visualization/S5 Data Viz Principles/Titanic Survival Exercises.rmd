@@ -1,0 +1,206 @@
+---
+title: "Titanic Survival Exercises"
+output: html_notebook
+---
+
+### Background
+The Titanic was a British ocean liner that struck an iceberg and sunk on its maiden voyage in 1912 from the United Kingdom to New York. More than 1,500 of the estimated 2,224 passengers and crew died in the accident, making this one of the largest maritime disasters ever outside of war. The ship carried a wide range of passengers of all ages and both genders, from luxury travelers in first-class to immigrants in the lower classes. However, not all passengers were equally likely to survive the accident. We use real data about a selection of 891 passengers to learn who was on the Titanic and which passengers were more likely to survive.
+
+#### Libraries, Options, and Data 
+Be sure that you have installed the titanic package before proceeding.
+
+Define the titanic dataset starting from the titanic library with the following code:
+
+```{r}
+options(digits = 3)    # report 3 significant digits
+library(tidyverse)
+library(titanic)
+
+titanic <- titanic_train %>%
+    select(Survived, Pclass, Sex, Age, SibSp, Parch, Fare) %>%
+    mutate(Survived = factor(Survived),
+           Pclass = factor(Pclass),
+           Sex = factor(Sex))
+```
+
+
+### Question 1: Variable Types
+0.0/3.0 points (graded)
+Inspect the data and also use ?titanic_train to learn more about the variables in the dataset. Match these variables from the dataset to their variable type. There is at least one variable of each type (ordinal categorical, non-ordinal categorical, continuous, discrete).
+
+
+```{r}
+?titanic_train
+```
+
+
+```{r}
+sapply(titanic_train, class)
+```
+### Question 2: Demographics of Titanic Passengers
+0.0/3.5 points (graded)
+Make density plots of age grouped by sex. Try experimenting with combinations of faceting, alpha blending, stacking and using variable counts on the y-axis to answer the following questions. Some questions may be easier to answer with different versions of the density plot.
+
+
+```{r}
+head(titanic_train)
+```
+
+
+### Question 2: Demographics of Titanic Passengers
+0.0/3.5 points (graded)
+Make density plots of age grouped by sex. Try experimenting with combinations of faceting, alpha blending, stacking and using variable counts on the y-axis to answer the following questions. Some questions may be easier to answer with different versions of the density plot.
+
+Which of the following are true?
+
+```{r}
+  
+params <- titanic %>%
+    filter(!is.na(Age)) %>%
+    summarize(mean = mean(Age), sd = sd(Age))
+params
+```
+
+
+```{r}
+titanic %>%
+    filter(!is.na(Age)) %>% group_by(Sex) %>%
+    summarize(mean = mean(Age), sd = sd(Age))
+```
+```{r}
+titanic%>%filter(!is.na(Age)) %>% group_by(Sex) %>% ggplot(aes(x=Age,y=count))+geom_line()
+```
+```{r}
+```
+```{r}
+```
+```{r}
+```
+```{r}
+```
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+### Question 5: Survival by Age
+0.0/3.0 points (graded)
+Make a density plot of age filled by survival status. Change the y-axis to count and set alpha = 0.2.
+
+Which age group is the only group more likely to survive than die?
+
+```{r}
+titanic%>% ggplot(aes(Age,fill=Survived)) + geom_density(alpha = 0.2, bw = 0.75)
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+
+

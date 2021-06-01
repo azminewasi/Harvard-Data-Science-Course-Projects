@@ -1,0 +1,185 @@
+---
+title: "Assessment Part 1: Properties of Stars"
+output: html_notebook
+---
+
+## Background
+Astronomy is one of the oldest data-driven sciences. In the late 1800s, the director of the Harvard College Observatory hired women to analyze astronomical data, which at the time was done using photographic glass plates. These women became known as the “Harvard Computers”. They computed the position and luminosity of various astronomical objects such as stars and galaxies. (If you are interested, you can learn more about the Harvard Computers External link). Today, astronomy is even more of a data-driven science, with an inordinate amount of data being produced by modern instruments every day.
+
+In the following exercises we will analyze some actual astronomical data to inspect properties of stars, their absolute magnitude (which relates to a star's luminosity, or brightness), temperature and type (spectral class).
+
+#### Libraries and Options
+
+```{r}
+library(tidyverse)
+library(dslabs)
+data(stars)
+options(digits = 3) 
+```
+
+```{r}
+head(stars)
+```
+
+### Question 1
+0.0/2.0 points (graded)
+Load the stars data frame from dslabs. This contains the name, absolute magnitude, temperature in degrees Kelvin, and spectral class of selected stars. Absolute magnitude (shortened in these problems to simply "magnitude") is a function of star luminosity, where negative values of magnitude have higher luminosity.
+
+What is the mean magnitude?
+
+
+```{r}
+mean(stars$magnitude)
+```
+What is the standard deviation of magnitude?
+```{r}
+sd(stars$magnitude)
+```
+
+
+### Question 2
+1 point possible (graded)
+Make a density plot of the magnitude.
+
+How many peaks are there in the data?
+
+```{r}
+stars%>% ggplot(aes(magnitude)) + geom_density(alpha = 0.2, bw = 0.75)
+```
+
+
+### Question 3
+1 point possible (graded)
+Examine the distribution of star temperature.
+
+Which of these statements best characterizes the temperature distribution?
+The majority of stars have a high temperature.
+The majority of stars have a low temperature.
+The temperature distribution is normal.
+There are equal numbers of stars across the temperature range.
+
+```{r}
+sd(stars$temp)
+min(stars$temp)
+max(stars$temp)
+median(stars$temp)
+mean(stars$temp)
+```
+### Question 4
+1 point possible (graded)
+Make a scatter plot of the data with temperature on the x-axis and magnitude on the y-axis and examine the relationship between the variables. Recall that lower magnitude means a more luminous (brighter) star.
+
+When considering the plot of magnitude vs. temperature, most stars follow a _______________ trend. These are called main sequence stars.
+
+Fill in the blank:
+decreasing linear
+increasing linear
+decreasing exponential
+increasing exponential
+
+
+
+```{r}
+stars%>% ggplot(aes(x=temp,y=magnitude)) + geom_point()
+```
+
+### Question 5
+0.0/2.0 points (graded)
+For various reasons, scientists do not always follow straight conventions when making plots, and astronomers usually transform values of star luminosity and temperature before plotting. Flip the y-axis so that lower values of magnitude are at the top of the axis (recall that more luminous stars have lower magnitude) using scale_y_reverse(). Take the log base 10 of temperature and then also flip the x-axis.
+
+Fill in the blanks in the statements below to describe the resulting plot:
+
+The brighest, highest temperature stars are in the ______________ corner of the plot.
+lower left
+lower right
+upper left
+upper right
+
+```{r}
+stars %>%ggplot(aes(x=temp,y=magnitude)) + geom_point()+ scale_y_reverse() + scale_x_reverse()+scale_x_continuous(trans = "log10")
+```
+
+### Question 6
+0.0/1.0 point (graded)
+The trends you see allow scientists to learn about the evolution and lifetime of stars. The primary group of stars to which most stars belong we will call the main sequence stars (discussed in question 4). Most stars belong to this main sequence, however some of the more rare stars are classified as “old” and “evolved” stars. These stars tend to be hotter stars, but also have low luminosity, and are known as white dwarfs.
+
+How many white dwarfs are there in our sample?
+
+
+### Question 7
+0/1 point (graded)
+Consider stars which are not part of the Main Group but are not old/evolved (white dwarf) stars. These stars must also be unique in certain ways and are known as giants. Use the plot from Question 5 to estimate the average temperature of a giant.
+
+Which of these temperatures is closest to the average temperature of a giant?:
+5000K
+10000K
+15000K
+20000K
+
+
+### Question 8
+0.0/3.0 points (graded)
+We can now identify whether specific stars are main sequence stars, red giants or white dwarfs. Add text labels to the plot to answer these questions. You may wish to plot only a selection of the labels, repel the labels, or zoom in on the plot in RStudio so you can locate specific stars.
+
+Fill in the blanks in the statements below:
+
+The least lumninous star in the sample with a surface temperature over 5000K is _________.
+Antares
+Castor
+Mirfak
+Polaris
+van Maanen's Star
+unanswered
+
+```{r}
+stars %>% filter(temp>=5000) %>% ggplot(aes(x=temp,y=magnitude,label=star)) + geom_point()+ scale_y_reverse() + scale_x_reverse()+scale_x_continuous(trans = "log10")+geom_text()
+```
+The two stars with lowest temperature and highest luminosity are known as supergiants. The two supergiants in this dataset are ____________.
+Rigel and Deneb
+*SiriusB and van Maanen's Star
+Alnitak and Alnilam
+Betelgeuse and Antares
+Wolf359 and G51-I5
+
+```{r}
+stars %>% filter(temp<=5000) %>% filter(magnitude<=mean(magnitude)) %>% ggplot(aes(x=temp,y=magnitude,label=star)) + geom_point()+ scale_y_reverse() + scale_x_reverse()+scale_x_continuous(trans = "log10")+geom_text()
+```
+
+The Sun is a ______________.
+main sequence star
+giant
+white dwarf
+```{r}
+stars %>% ggplot(aes(x=temp,y=magnitude,label=star,col = ifelse(star=="Sun",'red','green'))) + geom_point()+ scale_y_reverse() + scale_x_reverse()+scale_x_continuous(trans = "log10")+geom_text()
+```
+
+
+### Question 9
+0.0/3.0 points (graded)
+Remove the text labels and color the points by star type. This classification describes the properties of the star's spectrum, the amount of light produced at various wavelengths.
+
+Which star type has the lowest temperature?
+
+```{r}
+stars %>% filter(temp==min(temp))
+
+```
+Which star type has the highest temperature?
+
+```{r}
+stars %>% filter(temp==max(temp))
+```
+
+The Sun is classified as a G-type star. Is the most luminous G-type star in this dataset also the hottest?
+
+```{r}
+stars %>%  ggplot(aes(x=temp,y=magnitude,label=star,col = ifelse(type=="G",'red','green'))) + geom_point()+ scale_y_reverse() + scale_x_reverse()+scale_x_continuous(trans = "log10")+geom_text()
+```
+
+
+```{r}
+
+```
+
+
+

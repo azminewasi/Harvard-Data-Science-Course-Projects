@@ -11,3 +11,6 @@ results <- replicate(B, {    # returns vector of B logical values
   any(duplicated(bdays))
 })
 mean(results)    # calculates proportion of groups with duplicated bdays
+
+bdays <- sample(1:365, 2, replace = TRUE)
+any(duplicated(bdays))

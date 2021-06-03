@@ -1,0 +1,59 @@
+---
+title: "DataCamp Assessment: The Addition Rule and Monty Hall"
+output: html_notebook
+---
+
+# Exercise 1. The Cavs and the Warriors
+Two teams, say the Cavs and the Warriors, are playing a seven game championship series. The first to win four games wins the series. The teams are equally good, so they each have a 50-50 chance of winning each game.
+
+If the Cavs lose the first game, what is the probability that they win the series?
+
+Instructions
+100 XP
+Assign the number of remaining games to the variable n.
+Assign a variable outcomes as a vector of possible outcomes in a single game, where 0 indicates a loss and 1 indicates a win for the Cavs.
+Assign a variable l to a list of all possible outcomes in all remaining games. Use the rep function to create a list of n games, where each game consists of list(outcomes).
+Use the expand.grid function to create a data frame containing all the combinations of possible outcomes of the remaining games.
+Use the rowSums function to identify which combinations of game outcomes result in the Cavs winning the number of games necessary to win the series.
+Use the mean function to calculate the proportion of outcomes that result in the Cavs winning the series and print your answer to the console.
+
+```{r}
+
+```
+
+
+
+```{r}
+
+```
+
+
+
+```{r}
+
+```
+
+
+
+```{r}
+
+```
+
+
+
+```{r}
+
+```
+
+
+
+```{r}
+
+```
+
+
+
+```{r}
+
+```
+
